@@ -1,0 +1,40 @@
+name: orynova
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      NEXT_TELEMETRY_DISABLED: "1"
+      HOSTNAME: 0.0.0.0
+      PORT: "3000"
+    expose:
+      - "3000"
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:3000/api/health/ready').then((response) => { if (!response.ok) process.exit(1) }).catch(() => process.exit(1))",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 15s
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.orynova.rule=Host(`orynova.sharhan.dev`)
+      - traefik.http.routers.orynova.entrypoints=websecure
+      - traefik.http.routers.orynova.tls=true
+      - traefik.http.routers.orynova.tls.certresolver=letsencrypt
+      - traefik.http.routers.orynova.service=orynova
+      - traefik.http.services.orynova.loadbalancer.server.port=3000
+    networks:
+      - application
+
+networks:
+  application:

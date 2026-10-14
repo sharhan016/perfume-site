@@ -1,0 +1,14 @@
+.git
+.github
+.next
+node_modules
+qa
+.DS_Store
+**/.DS_Store
+*.log
+.env*
+Dockerfile*
+docker-compose*.yml
+/*.md
+/*.png
+/*.jpg
