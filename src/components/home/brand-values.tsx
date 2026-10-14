@@ -1,9 +1,12 @@
 import {getTranslations} from 'next-intl/server';
-import {Sparkles, Gem, Flower2, Compass} from 'lucide-react';
 import {FadeReveal} from '@/components/animations/fade-reveal';
-import type {HomePageContent} from '@/content/pages/home';
-const icons = {spark: Sparkles, gem: Gem, flower: Flower2, compass: Compass};
-export async function BrandValues({values}: {values: HomePageContent['values']}) {
- const t = await getTranslations('Home.values');
- return <section className="values-section container section-space" aria-labelledby="values-title"><FadeReveal><div className="values-heading"><p className="eyebrow">{t('eyebrow')}</p><h2 id="values-title">{t('title')}</h2><p className="section-subtitle">{t('subtitle')}</p></div><div className="values-grid">{values.map(value => {const Icon = icons[value.icon];return <div className="value-item" key={value.id}><Icon aria-hidden="true" size={29} strokeWidth={1} /><h3>{t(`${value.id}.title`)}</h3><p>{t(`${value.id}.description`)}</p></div>;})}</div></FadeReveal></section>;
+import {ParallaxImage} from '@/components/animations/parallax-image';
+import {EditorialImage} from '@/components/ui/editorial-image';
+import {EditorialLink} from '@/components/ui/editorial-link';
+import {FragranceAttributes} from '@/components/fragrance/attributes';
+import type {Fragrance, Locale} from '@/types/content';
+export async function BrandValues({fragrance,locale}: {fragrance:Fragrance|undefined;locale:Locale}) {
+ const t=await getTranslations('Home.values');
+ if(!fragrance?.attributes?.length) return null;
+ return <section className={`brand-signature container section-space theme-${fragrance.theme}`} aria-labelledby="values-title"><FadeReveal className="brand-signature-art"><ParallaxImage><EditorialImage asset={fragrance.images.primary} locale={locale} sizes="(max-width:899px) 90vw, 48vw"/></ParallaxImage></FadeReveal><div className="brand-signature-copy"><FadeReveal><p className="eyebrow">{t('eyebrow')}</p><h2 id="values-title">{t('title')}</h2><p className="signature-name" dir="ltr">{fragrance.name}</p><p className="section-subtitle">{fragrance.tagline[locale]}</p></FadeReveal><FadeReveal delay={.12}><FragranceAttributes attributes={fragrance.attributes} locale={locale}/><EditorialLink href={`/fragrances#${fragrance.slug}`}>{t('explore',{name:fragrance.name})}</EditorialLink></FadeReveal></div></section>;
 }

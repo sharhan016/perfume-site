@@ -30,3 +30,6 @@ All supplied source images are preserved unchanged. Display assets have been con
 - **Official favicon/app icon** — SVG and 512×512 PNG; shared devices; transparency optional; missing; `public/images/brand/icon.svg`.
 
 Marketing headings, translations and buttons remain HTML. Product photographs and brand marks are never mirrored. The registry is `src/content/assets.ts`; the optimization command is `npm run assets:optimize`. Client-approved contact details, company history, specifications, notes, prices, domain and Arabic editorial review are still content dependencies. No image asset is used to infer those facts.
+
+## Interactive refinement update
+NOX top/heart/base ingredient photography is now available in `public/images/notes/nox-{top,heart,base}.webp`. Each is 1536×1024, opaque 3:2, generated with the built-in imagegen tool and visually inspected. Exact prompts and visual-metaphor constraints are in `public/images/notes/GENERATION_PROMPTS.md`. Notes are supported by the supplied NOX reference board, as authorized in the current request. Product attributes LONG LASTING, PREMIUM QUALITY and CRAFTED FOR MEN are configured for NOX only. FUEGO and LAZO ingredient/attribute data remains unprovided; no extrapolation is made. Existing bottle photographs are reused unchanged. Iconography uses the established Lucide gold line system: Timer, Gem and UserRound.

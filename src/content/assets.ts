@@ -5,5 +5,10 @@ export const assets = {
  products: {nox: {src: '/images/products/nox/primary.webp', width: 1536, height: 1024, alt: {en: 'NOX: navy glass bottle with glossy black cylindrical cap and vertical gold ORYNOVA branding', ar: 'صورة NOX  : زجاجة كحلية بغطاء أسود أسطواني لامع وشعار أورينوفا الذهبي العمودي'}}, fuego: {src: '/images/products/fuego/primary.webp', width: 1024, height: 1536, alt: {en: 'FUEGO: amber glass bottle with glossy black cylindrical cap and vertical gold ORYNOVA branding', ar: 'صورة FUEGO  : زجاجة كهرمانية بغطاء أسود أسطواني لامع وشعار أورينوفا الذهبي العمودي'}}, lazo: {src: '/images/products/lazo/primary.webp', width: 1024, height: 1536, alt: {en: 'LAZO: burgundy glass bottle with glossy black cylindrical cap and vertical gold ORYNOVA branding', ar: 'صورة LAZO  : زجاجة عنابية بغطاء أسود أسطواني لامع وشعار أورينوفا الذهبي العمودي'}}},
  productAlternates: {lazo: {src: '/images/products/lazo/reference-alternative.png', width: 1024, height: 1536, alt: {en: 'Alternate LAZO bottle reference against a burgundy atmosphere', ar: 'صورة LAZO  البديلة  أمام خلفية عنابية'}}},
  campaigns: {packaging: {src: '/images/storytelling/collection-packaging.webp', width: 1672, height: 941, alt: {en: 'ORYNOVA campaign showing NOX, FUEGO and LAZO bottles with their presentation boxes', ar: 'صورة حملة أورينوفا  تعرض زجاجات NOX وFUEGO وLAZO مع علبها'}}},
+ notes: {nox: {
+ top: {src:'/images/notes/nox-top.webp',width:1536,height:1024,alt:{en:'Lavender, bergamot, sage and mandarin on dark stone',ar:'الخزامى والبرغموت والمريمية واليوسفي على حجر داكن'}},
+ heart: {src:'/images/notes/nox-heart.webp',width:1536,height:1024,alt:{en:'Coffee beans, geranium and jasmine flowers on dark stone',ar:'حبوب القهوة وأزهار إبرة الراعي والياسمين على حجر داكن'}},
+ base: {src:'/images/notes/nox-base.webp',width:1536,height:1024,alt:{en:'Sandalwood, leather, myrrh resin and an abstract white textile visual for musk',ar:'خشب الصندل والجلد وراتنج المر وتمثيل بصري تجريدي للمسك بنسيج أبيض'}}
+ }},
  heritage: missing('Approved Arabian heritage photography', 'صورة معتمدة للتراث العربي')
 };

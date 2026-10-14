@@ -1210,3 +1210,154 @@ html[lang='ar'] .button-outline {
     translate: none;
   }
 }
+
+/* One editorial CTA language; commerce actions retain their own class. */
+.premium-cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 26px;
+  min-height: 50px;
+  padding: 12px 0;
+  background: transparent;
+  border: 0;
+  color: var(--gold);
+  font: 400 12px/1.5 var(--font-body);
+  letter-spacing: .03em;
+  text-align: start;
+}
+.premium-cta::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  bottom: 4px;
+  height: 1px;
+  background: var(--gold);
+  transform: scaleX(.36);
+  transform-origin: left;
+  opacity: .65;
+  transition: transform .35s ease, opacity .35s ease;
+}
+[dir='rtl'] .premium-cta::after {transform-origin: right}
+.premium-cta .cta-arrow {transition: translate .3s ease}
+.premium-cta:is(:hover,:focus-visible)::after {transform: scaleX(1);opacity: 1}
+.premium-cta:is(:hover,:focus-visible) .cta-arrow {translate: 3px -3px}
+[dir='rtl'] .premium-cta:is(:hover,:focus-visible) .cta-arrow {translate: -3px -3px}
+.premium-cta:active {color: var(--ivory)}
+html[lang='ar'] .premium-cta {font-size: 14px;letter-spacing: 0}
+.commerce-cta {display:inline-flex;align-items:center;gap:20px;min-height:50px;padding:14px 24px;background:var(--gold);color:var(--background)}
+.parallax-frame {overflow:hidden}
+.parallax-frame>div {will-change:transform}
+.bottle-stage {display:block;position:relative;isolation:isolate;overflow:hidden;border:0}
+.bottle-stage::before {
+  content:'';
+  position:absolute;
+  inset:14% 5% 0;
+  z-index:-1;
+  background:radial-gradient(ellipse at 50% 65%,color-mix(in srgb,var(--atmosphere) 70%,transparent),transparent 66%);
+  opacity:0;
+  transform:scale(.9);
+  transition:opacity .5s ease,transform .6s ease;
+}
+.bottle-stage img {position:relative;mix-blend-mode:lighten;transition:transform .65s cubic-bezier(.22,1,.36,1)}
+.fragrance-image {border-bottom:1px solid var(--border)}
+.fragrance-showcase .fragrance-image::after {
+  content:'';position:absolute;inset-inline:0;bottom:0;height:1px;
+  background:var(--gold);transform:scaleX(0);transition:transform .4s ease;
+}
+.fragrance-showcase:focus-within .bottle-stage::before,.collection-entry:focus-within .bottle-stage::before {opacity:.8;transform:scale(1)}
+.fragrance-showcase:focus-within .bottle-stage img,.collection-entry:focus-within .bottle-stage img {transform:translateY(-10px) scale(1.04)}
+.fragrance-showcase:focus-within .fragrance-image::after {transform:scaleX(1)}
+.fragrance-showcase .premium-cta {width:100%}
+@media(hover:hover) and (pointer:fine) {
+ .fragrance-showcase:hover .bottle-stage::before,.collection-entry:hover .bottle-stage::before {opacity:.8;transform:scale(1)}
+ .fragrance-showcase:hover .bottle-stage img,.collection-entry:hover .bottle-stage img {transform:translateY(-10px) scale(1.04)}
+ .fragrance-showcase:hover .fragrance-image::after {transform:scaleX(1)}
+}
+.bottle-stage:active::before {opacity:.85;transform:scale(1)}
+.bottle-stage:active img {transform:translateY(-6px) scale(1.025)}
+.collection-intro {padding-block:75px 65px}
+.collection-intro h1 {font-size:clamp(45px,6.5vw,95px)}
+.collection-intro .body-copy {max-width:560px}
+.collection-editorial {padding-bottom:100px}
+.collection-entry {scroll-margin-top:30px;border-top:1px solid var(--border);padding-block:50px}
+.collection-entry-main {display:grid;gap:35px;align-items:center}
+.collection-bottle {aspect-ratio:4/5;background:radial-gradient(ellipse at center,color-mix(in srgb,var(--atmosphere) 18%,var(--background)),var(--background) 75%)}
+.collection-bottle img {display:block;width:100%;height:100%;object-fit:contain}
+.theme-nox .collection-bottle img {object-fit:cover}
+.collection-copy h2 {font-family:var(--font-playfair),serif;letter-spacing:.07em;font-size:clamp(50px,7vw,100px);text-align:start}
+html[dir='rtl'] .collection-copy h2 {text-align:right}
+.collection-tagline {font-family:var(--font-heading);font-size:clamp(22px,2.5vw,36px);line-height:1.5;color:var(--gold);margin-block:20px 28px}
+.fragrance-detail {padding-block:30px 20px}
+.fragrance-detail>.body-copy {max-width:660px;font-size:16px}
+.fragrance-attributes {list-style:none;display:grid;gap:28px;margin:35px 0;padding:0}
+.fragrance-attributes li {display:flex;align-items:center;gap:20px;color:var(--gold)}
+.fragrance-attributes span {font-size:11px;letter-spacing:.12em;line-height:1.6}
+html[lang='ar'] .fragrance-attributes span {font-size:15px;letter-spacing:0}
+.fragrance-attributes svg {flex-shrink:0}
+.brand-signature {display:grid;gap:40px;align-items:center;background:var(--background);border-top:1px solid var(--border)}
+.brand-signature-art img {display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover}
+.brand-signature-copy h2 {font-size:clamp(38px,4.5vw,70px)}
+.signature-name {font-family:var(--font-playfair),serif;color:var(--gold);font-size:24px;letter-spacing:.12em;margin:30px 0 0}
+.home-notes {border-top:1px solid var(--border);background:var(--surface)}
+.home-notes>div:first-child {margin-bottom:45px}
+.notes-heading h3 {font-family:var(--font-heading);font-size:clamp(26px,3vw,40px);font-weight:400;margin:0}
+.notes-heading p:not(.eyebrow) {font-size:13px;line-height:1.9;color:var(--muted);max-width:540px;margin-block:18px 30px}
+.notes-heading .eyebrow {margin-bottom:14px}
+.notes-tabs {display:flex;gap:20px;border-bottom:1px solid var(--border);margin-bottom:30px}
+.notes-tabs button {position:relative;min-width:0;flex:1;padding:18px 0;font-size:10px;letter-spacing:.08em;color:var(--muted);line-height:1.5}
+.notes-tabs button[aria-selected='true'] {color:var(--gold)}
+.note-tab-line {position:absolute;bottom:-1px;inset-inline:0;height:1px;background:var(--gold)}
+.notes-panel {display:grid;gap:25px;min-width:0}
+.notes-panel img {display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover}
+.ingredient-list {list-style:none;display:flex;flex-wrap:wrap;gap:14px 28px;padding:0;margin:0;color:var(--ivory);font-family:var(--font-heading);font-size:22px;line-height:1.6}
+.ingredient-list li {border-bottom:1px solid var(--border);padding-block:8px}
+.notes-experience {margin-top:30px}
+html[lang='ar'] .notes-tabs button {font-size:13px;letter-spacing:0}
+html[lang='ar'] .notes-heading p:not(.eyebrow) {font-size:15px}
+@media(min-width:900px) {
+ .collection-entry-main {grid-template-columns:1.1fr 1fr;gap:8vw}
+ .collection-editorial>div:nth-child(even) .collection-bottle {order:2}
+ .collection-editorial>div:nth-child(even) .collection-copy {order:1}
+ .collection-entry {padding-block:75px}
+ .collection-bottle {max-height:680px}
+ .collection-copy {padding-inline:30px}
+ .brand-signature {grid-template-columns:1.05fr 1fr;gap:7vw}
+ .brand-signature-art img {max-height:620px}
+ .notes-panel {grid-template-columns:1.4fr 1fr;align-items:center;gap:6vw}
+ .ingredient-list {display:grid;grid-template-columns:1fr 1fr;gap:24px}
+ .notes-tabs {max-width:650px;gap:35px}
+ .notes-tabs button {font-size:12px}
+ .fragrance-detail {max-width:1100px;margin-inline:auto}
+}
+@media(prefers-reduced-motion:reduce) {
+ .parallax-frame>div {will-change:auto}
+ .fragrance-showcase:is(:hover,:focus-within) .bottle-stage img,.collection-entry:is(:hover,:focus-within) .bottle-stage img,.bottle-stage:active img {transform:none}
+ .premium-cta:is(:hover,:focus-visible) .cta-arrow,[dir='rtl'] .premium-cta:is(:hover,:focus-visible) .cta-arrow {translate:none}
+}
+.bottle-stage {padding-block:18px}
+.brand-signature-art .parallax-frame {padding-block:24px}
+@media(hover:hover) and (pointer:fine) {
+ .fragrance-grid:has(.fragrance-showcase:hover) .fragrance-showcase:not(:hover) .bottle-stage::before,
+ .collection-editorial:has(.collection-entry:hover) .collection-entry:not(:hover) .bottle-stage::before {opacity:0;transform:scale(.9)}
+ .fragrance-grid:has(.fragrance-showcase:hover) .fragrance-showcase:not(:hover) .bottle-stage img,
+ .collection-editorial:has(.collection-entry:hover) .collection-entry:not(:hover) .bottle-stage img {transform:none}
+ .fragrance-grid:has(.fragrance-showcase:hover) .fragrance-showcase:not(:hover) .fragrance-image::after {transform:scaleX(0)}
+}
+/* Keyboard focus takes precedence over a stationary pointer on another bottle. */
+@media(hover:hover) and (pointer:fine) {
+ .fragrance-grid:has(.fragrance-showcase :focus-visible) .fragrance-showcase:not(:focus-within) .bottle-stage::before,
+ .collection-editorial:has(.collection-entry :focus-visible) .collection-entry:not(:focus-within) .bottle-stage::before {opacity:0;transform:scale(.9)}
+ .fragrance-grid:has(.fragrance-showcase :focus-visible) .fragrance-showcase:not(:focus-within) .bottle-stage img,
+ .collection-editorial:has(.collection-entry :focus-visible) .collection-entry:not(:focus-within) .bottle-stage img {transform:none}
+ .fragrance-grid:has(.fragrance-showcase :focus-visible) .fragrance-showcase:focus-within .bottle-stage::before,
+ .collection-editorial:has(.collection-entry :focus-visible) .collection-entry:focus-within .bottle-stage::before {opacity:.8;transform:scale(1)}
+ .fragrance-grid:has(.fragrance-showcase :focus-visible) .fragrance-showcase:focus-within .bottle-stage img,
+ .collection-editorial:has(.collection-entry :focus-visible) .collection-entry:focus-within .bottle-stage img {transform:translateY(-10px) scale(1.04)}
+ .fragrance-grid:has(.fragrance-showcase :focus-visible) .fragrance-showcase:not(:focus-within) .fragrance-image::after {transform:scaleX(0)}
+ .fragrance-grid:has(.fragrance-showcase :focus-visible) .fragrance-showcase:focus-within .fragrance-image::after {transform:scaleX(1)}
+}
+@media(prefers-reduced-motion:reduce) {
+ .bottle-stage img {transform:none!important}
+}

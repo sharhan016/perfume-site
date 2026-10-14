@@ -17,8 +17,8 @@ export function FadeReveal({children, className, delay = 0}: RevealProps) {
   if (!scope.current || !visible) return;
   const animation = animate(
    scope.current,
-   reduced ? {opacity: 1, y: 0} : {opacity: [0.5, 1], y: [18, 0]},
-   {duration: reduced ? 0 : 0.65, delay: reduced ? 0 : delay, ease: [0.22, 1, 0.36, 1]},
+   reduced ? {opacity: 1, y: 0} : {opacity: [0.15, 1], y: [32, 0]},
+   {duration: reduced ? 0 : 0.85, delay: reduced ? 0 : delay, ease: [0.22, 1, 0.36, 1]},
   );
   return () => {animation.stop();};
  }, [animate, delay, reduced, scope, visible]);
@@ -35,7 +35,7 @@ export function HeroEntrance({children, delay = 0, className, inline = false}: R
   if (!scope.current) return;
   const animation = animate(
    scope.current,
-   reduced ? {opacity: 1, y: 0} : {opacity: [0.4, 1], y: [16, 0]},
+   reduced ? {opacity: 1, y: 0} : {opacity: [0.1, 1], y: [24, 0]},
    {duration: reduced ? 0 : 0.8, delay: reduced ? 0 : delay, ease: [0.22, 1, 0.36, 1]},
   );
   return () => {animation.stop();};

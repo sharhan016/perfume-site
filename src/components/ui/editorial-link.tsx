@@ -1,19 +1,17 @@
-import {ArrowRight, ArrowUpRight} from 'lucide-react';
+import {ArrowUpRight} from 'lucide-react';
 import {Link} from '@/i18n/navigation';
 
-export function EditorialLink({href, children, solid = false, outlined = false, className = ''}: {
- href: string;
+type PremiumCtaProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+ href?: string;
  children: React.ReactNode;
- solid?: boolean;
- outlined?: boolean;
- className?: string;
-}) {
- const style = outlined ? 'button-outline' : solid ? 'button-gold' : 'editorial-link';
- const Arrow = outlined ? ArrowUpRight : ArrowRight;
- return (
-  <Link href={href} className={`${style} ${className}`}>
-   {children}
-   <Arrow size={18} strokeWidth={1.2} className="directional" aria-hidden="true" />
-  </Link>
- );
+ commerce?: boolean;
+};
+
+// A single visual component supports navigation and disclosure actions.
+// Commerce is deliberately a distinct opt-in style for a future integration.
+export function PremiumCta({href,children,className='',commerce=false,...buttonProps}:PremiumCtaProps) {
+ const classes=`${commerce?'commerce-cta':'premium-cta'} ${className}`;
+ const content=<><span>{children}</span><ArrowUpRight size={18} strokeWidth={1.2} className="directional cta-arrow" aria-hidden="true"/></>;
+ return href ? <Link href={href} className={classes}>{content}</Link> : <button {...buttonProps} className={classes}>{content}</button>;
 }
+export {PremiumCta as EditorialLink};

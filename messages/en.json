@@ -71,7 +71,7 @@
       "caption": "Heritage in spirit. Contemporary in expression."
     },
     "values": {
-      "eyebrow": "Our philosophy",
+      "eyebrow": "The NOX signature",
       "title": "More than a fragrance.",
       "subtitle": "A considered vision, down to the smallest detail.",
       "expression": {
@@ -89,7 +89,8 @@
       "purpose": {
         "title": "A meaningful presence",
         "description": "An invitation to make every moment your own."
-      }
+      },
+      "explore": "Explore {name}"
     },
     "discovery": {
       "eyebrow": "Find your signature",
@@ -105,5 +106,23 @@
       "description": "Begin your next chapter with ORYNOVA.",
       "cta": "Find your signature"
     }
+  },
+  "Collection": {
+    "eyebrow": "The ORYNOVA collection",
+    "title": "Find your presence.",
+    "description": "Different moods. Distinct expressions. Explore the world of ORYNOVA, one fragrance at a time.",
+    "explore": "Explore {name}",
+    "close": "Close exploration",
+    "identity": "{tagline}. A distinctive expression within the ORYNOVA collection.",
+    "empty": "The collection will appear here soon."
+  },
+  "Notes": {
+    "eyebrow": "An unfolding signature",
+    "heading": "The art of composition.",
+    "title": "Fragrance notes",
+    "intro": "Explore the opening, the heart, and the lasting base of NOX.",
+    "top": "TOP NOTES",
+    "heart": "HEART NOTES",
+    "base": "BASE NOTES"
   }
 }
