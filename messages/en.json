@@ -1,0 +1,108 @@
+{
+  "Nav": {
+    "home": "Home",
+    "fragrances": "Fragrances",
+    "story": "Our story",
+    "contact": "Contact",
+    "open": "Open navigation",
+    "close": "Close navigation",
+    "label": "Main navigation",
+    "language": "Switch to Arabic",
+    "skip": "Skip to content",
+    "menu": "Menu"
+  },
+  "Metadata": {
+    "title": "ORYNOVA — A new expression of presence",
+    "description": "Discover ORYNOVA. Modern Arabian luxury, distinctive fragrances, and an expression of your presence."
+  },
+  "Foundation": {
+    "eyebrow": "Modern Arabian luxury",
+    "headingFirst": "An expression",
+    "headingSecond": "of presence.",
+    "intro": "A new perspective on fragrance. Rooted in Arabian inspiration, shaped by a contemporary vision.",
+    "explore": "Meet the fragrances",
+    "assetLabel": "ORYNOVA fragrance world",
+    "assetCaption": "ORYNOVA"
+  },
+  "Destinations": {
+    "eyebrow": "The ORYNOVA world",
+    "collectionTitle": "Our fragrances.",
+    "collectionDescription": "Unique scents. One identity. Discover the names at the heart of ORYNOVA.",
+    "storyTitle": "Rooted in inspiration.",
+    "storyDescription": "A global vision, inspired by Arabian heritage. Explore a contemporary perspective on fragrance.",
+    "contactTitle": "Let’s connect.",
+    "contactDescription": "Our fragrance world begins with you. Explore the collection and find your signature.",
+    "back": "Return home",
+    "seedLabel": "Fragrance collection",
+    "empty": "The collection will appear here soon."
+  },
+  "Footer": {
+    "signature": "A fragrance beyond time.",
+    "navigation": "Explore ORYNOVA",
+    "location": "Inspired by Arabia",
+    "rights": "All rights reserved."
+  },
+  "Home": {
+    "hero": {
+      "eyebrow": "A fragrance beyond time",
+      "lineOne": "Discover the power",
+      "lineTwo": "of your",
+      "lineThree": "presence.",
+      "description": "An intimate expression. An unforgettable presence.\nEnter the world of ORYNOVA.",
+      "cta": "Explore the collection",
+      "signature": "Modern Arabian luxury",
+      "scroll": "Discover more"
+    },
+    "featured": {
+      "eyebrow": "The signature collection",
+      "title": "Distinct scents. One identity.",
+      "subtitle": "Find the fragrance that feels like you.",
+      "all": "View all fragrances",
+      "explore": "Explore {name}",
+      "empty": "A new collection is on the horizon."
+    },
+    "story": {
+      "eyebrow": "The spirit of ORYNOVA",
+      "lineOne": "A global vision.",
+      "lineTwo": "An Arabian soul.",
+      "description": "Between the warmth of tradition and the energy of tomorrow, a new expression takes shape. ORYNOVA brings an Arabian-inspired perspective to the way we experience fragrance — personal, expressive, and unmistakably yours.",
+      "cta": "Discover our story",
+      "caption": "Heritage in spirit. Contemporary in expression."
+    },
+    "values": {
+      "eyebrow": "Our philosophy",
+      "title": "More than a fragrance.",
+      "subtitle": "A considered vision, down to the smallest detail.",
+      "expression": {
+        "title": "Personal expression",
+        "description": "A scent that becomes part of your story."
+      },
+      "detail": {
+        "title": "Beauty in the details",
+        "description": "An appreciation for the subtle and the considered."
+      },
+      "identity": {
+        "title": "Distinctive character",
+        "description": "Individual moods. A shared ORYNOVA spirit."
+      },
+      "purpose": {
+        "title": "A meaningful presence",
+        "description": "An invitation to make every moment your own."
+      }
+    },
+    "discovery": {
+      "eyebrow": "Find your signature",
+      "lineOne": "Follow your instinct.",
+      "lineTwo": "Leave an impression.",
+      "description": "After dark. In the moment. Wherever life takes you.\nDiscover a different expression of yourself.",
+      "cta": "Discover the fragrances"
+    },
+    "closing": {
+      "eyebrow": "Your presence. Your story.",
+      "lineOne": "Some moments fade.",
+      "lineTwo": "Presence remains.",
+      "description": "Begin your next chapter with ORYNOVA.",
+      "cta": "Connect with ORYNOVA"
+    }
+  }
+}
