@@ -1,7 +1,7 @@
 'use client';
 import {useRef, useState, useEffect, useSyncExternalStore} from 'react';
 import {useLocale, useTranslations} from 'next-intl';
-import {Menu, X, ArrowUpRight} from 'lucide-react';
+import {Menu, X, ArrowUpRight, Languages} from 'lucide-react';
 import {motion, AnimatePresence, MotionConfig, useReducedMotion} from 'motion/react';
 import {Link, usePathname, useRouter} from '@/i18n/navigation';
 const routes = [{href: '/', key: 'home'}, {href: '/fragrances', key: 'fragrances'}, {href: '/our-story', key: 'story'}, {href: '/contact', key: 'contact'}] as const;
@@ -39,7 +39,7 @@ export function Header() {
  event.preventDefault();
  setOpen(false);
  router.push(`${pathname}${window.location.search}${window.location.hash}`, {locale: target});
-}}>{target === 'ar' ? 'العربية' : 'English'}<ArrowUpRight size={14} className="directional" aria-hidden="true" /></Link>;
+}}><Languages size={16} strokeWidth={1.3} aria-hidden="true" /><span className="language-label">{target === 'ar' ? 'العربية' : 'English'}</span></Link>;
  return <MotionConfig reducedMotion="user"><header className="site-header container"><Link href="/" className="wordmark" aria-label="ORYNOVA" dir="ltr">ORYNOVA<span aria-hidden="true" className="logo-dot">.</span></Link><nav className="desktop-nav" aria-label={t('label')}>{routes.map(route => <Link key={route.key} href={route.href} aria-current={pathname === route.href ? 'page' : undefined}>{t(route.key)}</Link>)}</nav><div className="header-actions">{language}<button ref={trigger} className="menu-trigger" aria-label={t('open')} aria-expanded={open} aria-controls="mobile-navigation" onClick={() => setOpen(true)}><Menu size={23} strokeWidth={1.4} /></button></div></header><AnimatePresence>{open && <dialog ref={dialog} id="mobile-navigation" className="mobile-dialog" aria-label={t('label')} onKeyDown={event => {
  if (event.key !== 'Tab') return;
  const controls = Array.from(event.currentTarget.querySelectorAll<HTMLElement>('a[href], button:not([disabled])'));
