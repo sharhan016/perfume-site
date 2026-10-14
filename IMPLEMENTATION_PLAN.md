@@ -1,7 +1,7 @@
 # ORYNOVA implementation plan
 
 ## Inspection and scope
-The repository is empty. At initial inspection no assets were present. Three PNG references were subsequently supplied: a UI concept board and two NOX bottle variants. No standalone official logo, FUEGO/LAZO photos, verified contacts, prices, notes or specifications are available. The supplied text brief is the only available source. This pass establishes Phase 1 only. Phases 2–6 require a separate review before implementation. No site publication is included in this foundation pass.
+The repository is empty. At initial inspection no assets were present. Three PNG references were subsequently supplied: a UI concept board and two NOX bottle variants. No standalone official logo, FUEGO/LAZO photos, verified contacts, prices, notes or specifications are available. The supplied text brief is the only available source. Phase 1 was completed and verified first. Phase 2 was then explicitly authorized and is now complete; Phases 3–6 remain behind separate review gates. This project remains a local, Vercel-compatible implementation without publication.
 
 ## Architecture
 Next.js App Router, strict TypeScript, Tailwind CSS, next-intl, Motion for React, and Lucide. Use stable npm releases resolved into a lockfile; validate compatibility with a production build. Server Components are the default; only navigation and motion primitives require client JavaScript. Vercel-compatible Node runtime; no database or commerce vendor commitment.
@@ -38,8 +38,8 @@ CSS interaction transitions and Motion entrance/exit on navigation. MotionConfig
 Replace the local content adapter with Sanity/Payload fetching without changing component-facing contracts. Centralized asset metadata supports remote CMS images and responsive crops. Commerce stays separate: no cart, prices, checkout or purchase confirmation in this pass. An approved WhatsApp number may later enable a real inquiry URL. No business contacts are currently configured.
 
 ## Phases and review gates
-1. Foundation (this pass): initialize, tokens/fonts, bilingual navigation, typed content, accessible responsive shell, temporary localized destination pages. Verify production build, TypeScript, locale paths, RTL, keyboard menu behavior and narrow widths. Stop for review.
-2. Homepage: approved campaign assets, asymmetric hero, collection preview, heritage story, positioning, discovery and restrained motion. Verify both languages.
+1. Foundation (completed): initialize, tokens/fonts, bilingual navigation, typed content, accessible responsive shell, temporary localized destination pages. Verify production build, TypeScript, locale paths, RTL, keyboard menu behavior and narrow widths. Stop for review.
+2. Homepage (completed): approved campaign assets, asymmetric hero, collection preview, heritage story, positioning, discovery and restrained motion. Verify both languages.
 3. Collection: data-driven responsive cards and empty state; no meaningless filters.
 4. Details: dynamic slugs, gallery, verified notes/specifications, related fragrances, honest inquiry action.
 5. Brand pages: reviewed story copy, verified contact data and imagery.
@@ -56,3 +56,6 @@ Two supplied collection campaigns and a standalone FUEGO reference are now centr
 
 ## Latest asset intake
 Portrait campaign and primary/alternate LAZO references are registered. All current fragrance primary images and both desktop/mobile campaign mappings are now populated. Phase 1 remains the completed review checkpoint; Phase 2 implementation has not begun.
+
+## Phase 2 completion
+The homepage now includes premium navigation, an art-directed hero, dynamic featured fragrances, brand storytelling, philosophy/values, discovery, closing CTA and footer. Mobile, tablet and desktop compositions are distinct. Customer-facing review/provenance labels have been removed; editorial review notes remain in documentation. See `PHASE_2_REPORT.md` for components, assets, checks and limitations. Phase 3 has not begun.

@@ -6,7 +6,7 @@ export type HomePageContent = {
  story: {image: Asset; ctaHref: '/our-story'};
  values: {id: 'expression' | 'detail' | 'identity' | 'purpose'; icon: 'spark' | 'gem' | 'flower' | 'compass'}[];
  discovery: {image: Asset; ctaHref: '/fragrances'};
- closing: {ctaHref: '/contact'};
+ closing: {ctaHref: '/fragrances'};
 };
 // Visual/editorial settings. Marketing copy is in the locale message catalogs.
 export const homeContent: HomePageContent = {
@@ -18,5 +18,5 @@ export const homeContent: HomePageContent = {
   {id: 'identity', icon: 'flower'}, {id: 'purpose', icon: 'compass'}
  ],
  discovery: {image: assets.hero.desktop, ctaHref: '/fragrances'},
- closing: {ctaHref: '/contact'}
+ closing: {ctaHref: '/fragrances'}
 };

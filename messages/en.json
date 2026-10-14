@@ -51,7 +51,8 @@
       "description": "An intimate expression. An unforgettable presence.\nEnter the world of ORYNOVA.",
       "cta": "Explore the collection",
       "signature": "Modern Arabian luxury",
-      "scroll": "Discover more"
+      "scroll": "Discover more",
+      "imageAlt": "ORYNOVA fragrance campaign: glossy black-capped bottles with gold branding in a cinematic atmosphere"
     },
     "featured": {
       "eyebrow": "The signature collection",
@@ -102,7 +103,7 @@
       "lineOne": "Some moments fade.",
       "lineTwo": "Presence remains.",
       "description": "Begin your next chapter with ORYNOVA.",
-      "cta": "Connect with ORYNOVA"
+      "cta": "Find your signature"
     }
   }
 }
