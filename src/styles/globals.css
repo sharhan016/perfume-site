@@ -1267,12 +1267,12 @@ html[lang='ar'] .premium-cta {font-size: 14px;letter-spacing: 0}
   background:var(--gold);transform:scaleX(0);transition:transform .4s ease;
 }
 .fragrance-showcase:focus-within .bottle-stage::before,.collection-entry:focus-within .bottle-stage::before {opacity:.8;transform:scale(1)}
-.fragrance-showcase:focus-within .bottle-stage img,.collection-entry:focus-within .bottle-stage img {transform:translateY(-10px) scale(1.04)}
+.fragrance-showcase:focus-within .bottle-stage img,.collection-entry:focus-within .bottle-stage img {transform:translateY(-14px) scale(1.04)}
 .fragrance-showcase:focus-within .fragrance-image::after {transform:scaleX(1)}
 .fragrance-showcase .premium-cta {width:100%}
 @media(hover:hover) and (pointer:fine) {
  .fragrance-showcase:hover .bottle-stage::before,.collection-entry:hover .bottle-stage::before {opacity:.8;transform:scale(1)}
- .fragrance-showcase:hover .bottle-stage img,.collection-entry:hover .bottle-stage img {transform:translateY(-10px) scale(1.04)}
+ .fragrance-showcase:hover .bottle-stage img,.collection-entry:hover .bottle-stage img {transform:translateY(-14px) scale(1.04)}
  .fragrance-showcase:hover .fragrance-image::after {transform:scaleX(1)}
 }
 .bottle-stage:active::before {opacity:.85;transform:scale(1)}
@@ -1354,10 +1354,198 @@ html[lang='ar'] .notes-heading p:not(.eyebrow) {font-size:15px}
  .fragrance-grid:has(.fragrance-showcase :focus-visible) .fragrance-showcase:focus-within .bottle-stage::before,
  .collection-editorial:has(.collection-entry :focus-visible) .collection-entry:focus-within .bottle-stage::before {opacity:.8;transform:scale(1)}
  .fragrance-grid:has(.fragrance-showcase :focus-visible) .fragrance-showcase:focus-within .bottle-stage img,
- .collection-editorial:has(.collection-entry :focus-visible) .collection-entry:focus-within .bottle-stage img {transform:translateY(-10px) scale(1.04)}
+ .collection-editorial:has(.collection-entry :focus-visible) .collection-entry:focus-within .bottle-stage img {transform:translateY(-14px) scale(1.04)}
  .fragrance-grid:has(.fragrance-showcase :focus-visible) .fragrance-showcase:not(:focus-within) .fragrance-image::after {transform:scaleX(0)}
  .fragrance-grid:has(.fragrance-showcase :focus-visible) .fragrance-showcase:focus-within .fragrance-image::after {transform:scaleX(1)}
 }
 @media(prefers-reduced-motion:reduce) {
  .bottle-stage img {transform:none!important}
+}
+
+/* Compact composition preview: full note lists remain available in product data. */
+.attribute-content {display:flex;align-items:center;gap:20px}
+.collection-campaign {font-family:var(--font-heading);font-size:clamp(25px,3vw,42px);line-height:1.4;color:var(--ivory)}
+.fragrance-preview {display:grid;gap:20px}
+.preview-identity {display:grid;grid-template-columns:1fr 110px;align-items:center;gap:15px}
+.preview-selector label {display:block;color:var(--muted);font-size:11px;line-height:1.6;margin-bottom:8px}
+.preview-selector select {background:var(--background);color:var(--gold);border:0;border-bottom:1px solid var(--gold);border-radius:0;min-height:48px;width:100%;padding:8px 4px;font-family:var(--font-playfair),serif;font-size:25px;letter-spacing:.08em}
+.preview-tagline {font-family:var(--font-heading);color:var(--muted);font-size:18px;line-height:1.6;margin:12px 0 0}
+.preview-bottle {height:150px;overflow:hidden;background:radial-gradient(ellipse,color-mix(in srgb,var(--atmosphere) 25%,var(--background)),transparent 70%)}
+.preview-bottle img {width:100%;height:100%;object-fit:contain;mix-blend-mode:lighten}
+.preview-composition {min-width:0}
+.preview-composition .notes-experience {margin-top:0}
+.preview-composition .notes-tabs {gap:12px;margin-bottom:18px}
+.preview-composition .notes-panel {grid-template-columns:1fr;gap:12px;min-height:240px}
+.preview-composition .notes-panel img {aspect-ratio:16/9}
+.preview-composition .ingredient-list {display:flex;gap:8px 22px;font-size:20px}
+.preview-composition .premium-cta {margin-top:20px}
+@media(min-width:900px) {
+ .fragrance-preview {grid-template-columns: .75fr 1.25fr;gap:7vw;align-items:center}
+ .preview-identity {display:flex;flex-direction:column;align-items:stretch;gap:10px}
+ .preview-selector {max-width:280px}
+ .preview-bottle {height:320px}
+ .preview-composition .notes-panel {min-height:350px}
+ .preview-composition .notes-panel img {aspect-ratio:3/2}
+ .preview-selector select {font-size:32px}
+}
+.theme-nox .preview-bottle img {object-fit:cover}
+
+/* Cinematic hero: one campaign environment, separate product and editorial layers. */
+.cinematic-hero {position:relative;isolation:isolate;overflow:hidden;background:#080d15;min-height:760px;height:calc(100svh - 72px);max-height:940px}
+.cinema-environment {position:absolute;inset:-50px 0 -80px;z-index:0;pointer-events:none}
+.cinema-environment>div {width:100%;height:100%}
+.cinema-environment img {display:block;width:100%;height:100%;object-fit:cover;object-position:65% center}
+.cinema-shadows {position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,#08090bbf,transparent 45%,#08090b33 70%,#08090b 100%);pointer-events:none}
+.cinema-light {position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(120deg,transparent 25%,#bca27140 48%,transparent 65%);transform:skewX(-12deg);transform-origin:top}
+.cinema-product {position:absolute;z-index:2;top:235px;left:15%;width:70%;height:340px;pointer-events:none;transform-origin:50% 80%}
+.cinema-product>div {height:100%;width:100%}
+.cinema-product img {display:block;width:100%;height:100%;object-fit:contain}
+.cinema-copy {position:relative;z-index:3;padding-top:45px;text-align:center;pointer-events:none}
+.cinema-copy .eyebrow {font-size:9px;letter-spacing:.19em;margin-bottom:20px;color:var(--gold)}
+.cinema-copy h1 {font-family:var(--font-heading);font-size:clamp(38px,10.6vw,49px);line-height:1.05;letter-spacing:-.035em;font-weight:400;max-width:none;margin:0 auto;color:var(--ivory)}
+.cinema-copy h1 em {font-weight:400;color:var(--gold)}
+.cinema-line-mask {display:block;overflow:hidden;padding-block: .05em .11em;margin-block:-.05em -.11em}
+.cinema-details {position:absolute;z-index:4;inset-inline:0;bottom:60px;text-align:center}
+.cinema-product-caption {display:flex;justify-content:center;align-items:center;gap:14px;color:var(--gold);font-size:10px;line-height:1.5;margin-bottom:15px}
+.cinema-product-caption>span:first-child {font-family:var(--font-playfair),serif;letter-spacing:.2em}
+.cinema-product-caption>span+span {border-inline-start:1px solid #d8b47755;padding-inline-start:14px;color:var(--ivory)}
+.cinema-description {white-space:pre-line;font-size:12px;line-height:1.85;color:#dfd8cc;margin:0 0 12px}
+.cinema-support .premium-cta {min-height:50px}
+.cinema-foreground {position:absolute;z-index:3;inset:55% 0 0;background:linear-gradient(180deg,transparent,#08090b 95%);pointer-events:none}
+.cinema-bottom {position:absolute;z-index:4;inset-inline:0;bottom:18px;display:flex;justify-content:space-between;align-items:center;gap:15px;color:var(--muted);font-size:8px;letter-spacing:.12em;text-transform:uppercase}
+.cinema-bottom .scroll-cue {min-height:44px}
+html[lang='ar'] .cinema-copy h1 {font-size:clamp(43px,12vw,54px);line-height:1.18;letter-spacing:0}
+html[lang='ar'] .cinema-copy .eyebrow,html[lang='ar'] .cinema-bottom {letter-spacing:0;font-size:11px}
+html[lang='ar'] .cinema-description {font-size:14px}
+html[lang='ar'] .cinema-product-caption {font-size:12px}
+@media(max-width:359px) {
+ .cinema-product {top:220px;height:320px}
+ .cinema-copy {padding-top:35px}
+ .cinema-copy .eyebrow {font-size:8px}
+ .cinematic-hero {min-height:730px}
+}
+@media(min-width:600px) and (max-width:899px) {
+ .cinematic-hero {min-height:900px;max-height:1000px}
+ .cinema-copy {padding-top:60px}
+ .cinema-copy h1 {font-size:62px}
+ html[lang='ar'] .cinema-copy h1 {font-size:68px}
+ .cinema-product {top:350px;height:340px;left:25%;width:50%}
+ .cinema-details {bottom:55px}
+}
+@media(min-width:900px) {
+ .cinematic-hero {min-height:690px;height:calc(100svh - 88px);max-height:1000px}
+ .cinema-environment img {object-position:center}
+ .cinema-shadows {background:linear-gradient(90deg,#080d15a6,transparent 65%),linear-gradient(0deg,#08090b,transparent 26%,transparent 85%,#08090b55)}
+ .cinema-copy {padding-top:clamp(65px,9vh,140px);text-align:start}
+ .cinema-copy .eyebrow {font-size:10px;margin-bottom:35px}
+ .cinema-copy h1 {font-size:clamp(60px,min(6.5vw,12vh),114px);line-height:1.05;max-width:65%;margin:0;letter-spacing:-.04em}
+ .cinema-product {top:3%;left:51%;width:43%;height:79%;transform-origin:50% 90%}
+ .cinema-details {bottom:95px;text-align:start}
+ .cinema-details>div {display:flex;align-items:flex-end;justify-content:space-between}
+ .cinema-support {order:-1}
+ .cinema-product-caption {align-self:flex-end;min-width:38%;justify-content:center;margin:0 0 18px}
+ .cinema-description {font-size:14px;margin-bottom:20px}
+ .cinema-bottom {font-size:9px;bottom:22px}
+ .cinema-foreground {inset:70% 0 0}
+ html[lang='ar'] .cinema-copy h1 {font-size:clamp(70px,min(7.6vw,12.5vh),118px);max-width:62%;line-height:1.14}
+ html[dir='rtl'] .cinema-product {left:6%}
+ html[dir='rtl'] .cinema-shadows {background:linear-gradient(270deg,#080d15a6,transparent 65%),linear-gradient(0deg,#08090b,transparent 26%)}
+ html[lang='ar'] .cinema-description {font-size:16px}
+}
+@media(prefers-reduced-motion:reduce) {
+ .cinematic-hero * {scroll-behavior:auto}
+}
+.cinema-product.is-integrated img {mix-blend-mode:lighten;mask-image:radial-gradient(ellipse at center,#000 52%,transparent 74%)}
+/* Keep portrait headline, full cap/base and caption in separate visual bands. */
+@media(max-width:599px) {
+ .cinematic-hero {min-height:clamp(775px,calc(100vw + 380px),810px)}
+ .cinema-product {top:clamp(235px,calc(50vw + 50px),265px);height:320px}
+ html[lang='ar'] .cinema-copy h1 {font-size:clamp(38px,10.8vw,47px);line-height:1.12}
+}
+@media(max-width:359px) {
+ .cinematic-hero {min-height:750px}
+ .cinema-product {top:220px;height:300px}
+}
+@media(min-width:600px) and (max-width:899px) {
+ html[lang='ar'] .cinema-copy h1 {font-size:64px}
+}
+
+.cinema-line-mask>span {display:block}
+
+/* The Art of Fragrance — editorial discovery scene, scoped to the homepage. */
+.home-notes {background:var(--background);padding-block:56px}
+.home-notes .eyebrow {margin-bottom:16px}
+.home-notes .section-subtitle {margin-top:12px}
+.home-notes>div:first-child {margin-bottom:24px}
+.fragrance-discovery {min-width:0}
+.discovery-fragrance-tabs {display:flex;align-items:center;gap:30px;overflow-x:auto;scrollbar-width:thin;scrollbar-color:#d8b47755 transparent;border-bottom:1px solid var(--border);padding:6px 2px 12px;max-width:100%;overscroll-behavior-inline:contain}
+.discovery-fragrance-tabs button {position:relative;flex:0 0 auto;min-height:50px;padding:8px 12px;color:var(--muted);font-family:var(--font-playfair),serif;font-size:22px;line-height:1.2;letter-spacing:.12em;transition:color .2s}
+.discovery-fragrance-tabs button[aria-selected='true'],.discovery-fragrance-tabs button:hover {color:var(--gold)}
+.discovery-fragrance-line {position:absolute;inset-inline:12px;bottom:0;height:1px;background:var(--gold)}
+.discovery-scene {position:relative;isolation:isolate;display:grid;gap:12px;min-width:0;padding-block:16px 10px}
+.discovery-environment {position:absolute;z-index:-2;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 75%;opacity:.22;mask-image:radial-gradient(ellipse at center,#000 35%,transparent 74%);pointer-events:none}
+.discovery-atmosphere {position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at 30% 40%,color-mix(in srgb,var(--atmosphere) 44%,transparent),transparent 67%);pointer-events:none}
+.discovery-product {display:grid;grid-template-columns:1.05fr 1fr;gap:12px;align-items:center;min-width:0}
+.discovery-product-art {position:relative;height:220px;min-width:0}
+.discovery-product-art>div {position:absolute;inset:0}
+.discovery-product-art img {display:block;width:100%;height:100%;object-fit:contain}
+.discovery-product-copy {min-width:0}
+.discovery-product-copy h3 {font-family:var(--font-playfair),serif;color:var(--gold);font-size:clamp(28px,8vw,42px);font-weight:400;letter-spacing:.09em;line-height:1.2;margin:0 0 16px;overflow-wrap:anywhere;text-align:start}
+html[dir='rtl'] .discovery-product-copy h3 {text-align:right}
+.discovery-product-copy p {font-family:var(--font-heading);color:var(--ivory);font-size:clamp(20px,5.5vw,26px);line-height:1.4;margin:0;max-width:240px}
+.discovery-composition {min-width:0}
+.discovery-note-tabs {display:flex;gap:10px;border-bottom:1px solid var(--border)}
+.discovery-note-tabs button {position:relative;flex:1;min-width:0;min-height:52px;padding:14px 0;font-size:11px;letter-spacing:.075em;line-height:1.5;color:var(--muted)}
+.discovery-note-tabs button[aria-selected='true'] {color:var(--gold)}
+.discovery-note-line {position:absolute;inset-inline:0;bottom:-1px;height:1px;background:var(--gold)}
+.discovery-note-panel {min-height:190px;padding-top:18px}
+.discovery-note-description {font-family:var(--font-heading);font-weight:400;font-size:25px;line-height:1.4;margin:0 0 12px;color:var(--ivory)}
+.discovery-ingredients {display:grid;grid-template-columns:1.1fr 1fr;gap:16px;align-items:center;min-width:0}
+.discovery-ingredient-art {min-width:0;height:130px;margin-inline-start:-12px}
+.discovery-ingredient-art img {display:block;width:100%;height:100%;object-fit:contain;mask-image:radial-gradient(ellipse at center,#000 45%,#000b 62%,transparent 78%)}
+.discovery-ingredient-names {list-style:none;padding:0;margin:0;display:grid;gap:13px;min-width:0;color:var(--ivory);font-family:var(--font-heading);font-size:20px;line-height:1.35}
+.discovery-ingredient-names li {overflow-wrap:anywhere}
+.discovery-composition>.premium-cta {margin-top:8px}
+html[lang='ar'] .discovery-note-tabs button {font-size:12px;letter-spacing:0}
+html[lang='ar'] .discovery-product-copy p {font-size:26px;line-height:1.6}
+html[lang='ar'] .discovery-ingredient-names {font-size:23px;line-height:1.6}
+html[lang='ar'] .discovery-note-description {font-size:30px}
+@media(min-width:600px) and (max-width:899px) {
+ .discovery-product {grid-template-columns:1fr 1fr;gap:35px}
+ .discovery-product-art {height:320px}
+ .discovery-product-copy h3 {font-size:50px}
+ .discovery-product-copy p {font-size:32px}
+ .discovery-ingredient-art {height:185px}
+ .discovery-note-panel {min-height:260px}
+}
+@media(min-width:900px) {
+ .home-notes>div:first-child {margin-bottom:30px}
+ .discovery-fragrance-tabs {gap:48px;max-width:100%;padding-bottom:15px}
+ .discovery-fragrance-tabs button {font-size:26px}
+ .discovery-scene {grid-template-columns:1fr 1fr;gap:6vw;align-items:center;padding-block:30px 20px}
+ .discovery-product {grid-template-columns:1fr;gap:22px;text-align:center}
+ .discovery-product-art {height:360px}
+ .discovery-product-copy h3 {text-align:center;font-size:42px;margin-bottom:10px}
+ html[dir='rtl'] .discovery-product-copy h3 {text-align:center}
+ .discovery-product-copy p {font-size:30px;max-width:none}
+ .discovery-atmosphere {background:radial-gradient(ellipse at 25% 40%,color-mix(in srgb,var(--atmosphere) 45%,transparent),transparent 65%)}
+ html[dir='rtl'] .discovery-atmosphere {background:radial-gradient(ellipse at 75% 40%,color-mix(in srgb,var(--atmosphere) 45%,transparent),transparent 65%)}
+ .discovery-note-tabs button {font-size:11px}
+ .discovery-note-description {font-size:36px;margin-bottom:20px}
+ .discovery-ingredient-art {height:230px;margin-inline-start:-25px}
+ .discovery-ingredient-names {font-size:25px;gap:20px}
+ .discovery-note-panel {min-height:310px;padding-top:35px}
+ .discovery-composition>.premium-cta {margin-top:25px}
+ html[lang='ar'] .discovery-note-description {font-size:40px}
+}
+@media(prefers-reduced-motion:reduce) {
+ .discovery-fragrance-tabs {scroll-behavior:auto}
+ .discovery-fragrance-tabs button {transition:none}
+}
+
+@media(max-width:599px) {.home-notes h2 {font-size:40px}}
+@media(min-width:900px) {.home-notes {padding-block:64px}}
+.discovery-atmosphere {mask-image:radial-gradient(ellipse at center,#000 42%,transparent 76%)}
+@media(max-width:899px) {
+ html[dir='rtl'] .discovery-atmosphere {background:radial-gradient(ellipse at 70% 40%,color-mix(in srgb,var(--atmosphere) 44%,transparent),transparent 67%)}
 }

@@ -20,7 +20,7 @@ Homepage editorial settings: `src/content/pages/home.ts`, accessed through `src/
 
 Assets: `src/content/assets.ts`. Missing assets use a branded placeholder. Source PNGs are preserved; displayed assets use optimized WebP files. No photographic mirroring or bottle redesign.
 
-Business contacts: `src/lib/commerce/config.ts`. Notes, specifications, prices and contact details remain unverified and absent. No fake checkout, reviews, payment processing or performance claims. All Arabic marketing translations and English concept copy require client/editorial review; review labels are kept out of the visitor experience.
+Business contacts: `src/lib/commerce/config.ts`. Fragrance notes and campaign messages follow the latest brand-supplied reference. Unprovided specifications, prices and contact details remain absent. No fake checkout, reviews, payment processing or performance claims. All Arabic marketing translations and English concept copy require client/editorial review; review labels are kept out of the visitor experience.
 
 Product exploration currently links to matching entries on the foundation collection route. Full product details belong to Phase 4. Preview metadata remains noindex until production approval and a verified domain.
 

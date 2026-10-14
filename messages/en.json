@@ -71,7 +71,7 @@
       "caption": "Heritage in spirit. Contemporary in expression."
     },
     "values": {
-      "eyebrow": "The NOX signature",
+      "eyebrow": "THE {name} SIGNATURE",
       "title": "More than a fragrance.",
       "subtitle": "A considered vision, down to the smallest detail.",
       "expression": {
@@ -118,11 +118,18 @@
   },
   "Notes": {
     "eyebrow": "An unfolding signature",
-    "heading": "The art of composition.",
+    "heading": "The Art of Fragrance",
     "title": "Fragrance notes",
-    "intro": "Explore the opening, the heart, and the lasting base of NOX.",
+    "intro": "Every note tells a story.",
     "top": "TOP NOTES",
     "heart": "HEART NOTES",
-    "base": "BASE NOTES"
+    "base": "BASE NOTES",
+    "select": "Choose a fragrance",
+    "explore": "Explore {name}",
+    "impressions": {
+      "top": "The First Impression",
+      "heart": "The Soul",
+      "base": "The Lasting Impression"
+    }
   }
 }
