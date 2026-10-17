@@ -7,7 +7,12 @@ if(!process.env.ORYNOVA_DISCOVERY_MODE) {
  await mkdir('.discovery-test',{recursive:true});
  try {
   for(const name of ['fragrance-preview','discovery-notes']) {
-   const source=(await readFile(`src/components/fragrance/${name}.tsx`,'utf8')).replace("next/image","next/image.js").replace("@/components/ui/editorial-link","./cta.mjs").replace("'./discovery-notes'","'./discovery-notes.mjs'");
+   const source=(await readFile(`src/components/fragrance/${name}.tsx`,'utf8')).replace("next/image","next/image.js").replaceAll("@/components/animations/selection-transition","./selection-transition.mjs").replaceAll("@/components/animations/motion-spec","./motion-spec.mjs").replace("@/components/ui/editorial-link","./cta.mjs").replace("'./discovery-notes'","'./discovery-notes.mjs'");
+   await writeFile(`.discovery-test/${name}.mjs`,ts.transpileModule(source,{compilerOptions:{jsx:ts.JsxEmit.ReactJSX,module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText);
+  }
+  for(const name of ['motion-spec','selection-transition']) {
+   const extension=name==='motion-spec'?'ts':'tsx';
+   const source=(await readFile(`src/components/animations/${name}.${extension}`,'utf8')).replace("'./motion-spec'","'./motion-spec.mjs'");
    await writeFile(`.discovery-test/${name}.mjs`,ts.transpileModule(source,{compilerOptions:{jsx:ts.JsxEmit.ReactJSX,module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText);
   }
   // Only replace the framework navigation boundary; selector and Motion logic stay real.
@@ -29,11 +34,11 @@ if(!process.env.ORYNOVA_DISCOVERY_MODE) {
  // Seven fixtures exercise arbitrary collection length, independently of brand seed count.
  const fragrances=Array.from({length:7},(_,index)=>({id:`scent-${index}`,slug:`scent-${index}`,name:`SCENT ${index}`,theme:'nox',tagline:text(`Signature ${index}`),images:{primary:asset},notes:{top:[{id:'lavender',name:text('Lavender')}],heart:[{id:'coffee',name:text('Coffee')}],base:[{id:'oud',name:text('Oud')}]}}));
  const props={fragrances,initialId:'scent-0',previewCount:2,locale:'en',labels:{title:'Notes',top:'TOP NOTES',heart:'HEART NOTES',base:'BASE NOTES'},selectLabel:'Fragrances',exploreLabels:Object.fromEntries(fragrances.map(p=>[p.id,`Explore ${p.name}`])),descriptions:{top:'The First Impression',heart:'The Soul',base:'The Lasting Impression'},environment:asset};
- const html=renderToString(React.createElement(FragrancePreview,props));assert.ok(html.includes('Lavender'));assert.ok(!/opacity:0(?:;|")/.test(html),'SSR hides discovery content');
+ const html=renderToString(React.createElement(FragrancePreview,props));assert.ok(html.includes('Lavender'));const serverDoc=new JSDOM(html).window.document;for(const element of serverDoc.querySelectorAll('[style]'))if(!element.closest('[aria-hidden="true"]'))assert.notEqual(element.style.opacity,'0','SSR hides readable discovery content');
  const root=createRoot(document.getElementById('root'));await React.act(async()=>root.render(React.createElement(FragrancePreview,props)));
  const fragranceTabs=()=>[...document.querySelectorAll('.discovery-fragrance-tabs button')];assert.equal(fragranceTabs().length,7);assert.equal(fragranceTabs().filter(b=>b.tabIndex===0).length,1);
  const key=async(button,key)=>{await React.act(async()=>button.dispatchEvent(new window.KeyboardEvent('keydown',{key,bubbles:true})));};
- await key(fragranceTabs()[0],'End');assert.equal(fragranceTabs()[6].getAttribute('aria-selected'),'true');assert.equal(document.activeElement,fragranceTabs()[6]);assert.equal(scrollOptions.inline,'nearest');assert.equal(scrollOptions.behavior,reduced?'auto':'smooth');
+ await key(fragranceTabs()[0],'End');assert.equal(fragranceTabs()[6].getAttribute('aria-selected'),'true');assert.equal(document.activeElement,fragranceTabs()[6]);assert.equal(scrollOptions.inline,'nearest');assert.equal(scrollOptions.behavior,'auto');
  await key(fragranceTabs()[6],'ArrowRight');assert.equal(fragranceTabs()[0].getAttribute('aria-selected'),'true');
  await React.act(async()=>root.render(React.createElement(FragrancePreview,{...props,locale:'ar'})));
  await key(fragranceTabs()[0],'ArrowRight');assert.equal(fragranceTabs()[6].getAttribute('aria-selected'),'true');

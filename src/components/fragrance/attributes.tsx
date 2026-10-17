@@ -6,5 +6,5 @@ function SuitSymbol(props: React.SVGProps<SVGSVGElement> & {size?:number}) {
 }
 const icons = {timer: Timer, diamond: Gem, person: SuitSymbol};
 export function FragranceAttributes({attributes, locale, reveal=false}: {attributes: FragranceAttribute[]; locale: Locale; reveal?: boolean}) {
- return <ul className="fragrance-attributes">{attributes.map((attribute,index)=>{const Icon=icons[attribute.icon];const content=<><Icon size={32} strokeWidth={1.15} aria-hidden="true"/><span>{attribute.label[locale]}</span></>;return <li key={attribute.id}>{reveal?<FadeReveal delay={index*.14} className="attribute-content">{content}</FadeReveal>:content}</li>;})}</ul>;
+ return <ul className="fragrance-attributes">{attributes.map((attribute,index)=>{const Icon=icons[attribute.icon];const content=<><Icon size={32} strokeWidth={1.15} aria-hidden="true"/><span>{attribute.label[locale]}</span></>;return <li key={attribute.id}>{reveal?<FadeReveal delay={index*.06} className="attribute-content">{content}</FadeReveal>:content}</li>;})}</ul>;
 }

@@ -2,7 +2,8 @@
 import {useRef, useState, useEffect, useSyncExternalStore} from 'react';
 import {useLocale, useTranslations} from 'next-intl';
 import {Menu, X, ArrowUpRight, Languages} from 'lucide-react';
-import {motion, AnimatePresence, MotionConfig, useReducedMotion} from 'motion/react';
+import {motion, MotionConfig, useReducedMotion} from 'motion/react';
+import {motionSpec} from '@/components/animations/motion-spec';
 import {Link, usePathname, useRouter} from '@/i18n/navigation';
 const routes = [{href: '/', key: 'home'}, {href: '/fragrances', key: 'fragrances'}, {href: '/our-story', key: 'story'}, {href: '/contact', key: 'contact'}] as const;
 function subscribeLocation(callback: () => void) {
@@ -19,6 +20,13 @@ export function Header() {
  const target = locale === 'en' ? 'ar' : 'en';
  const suffix = useSyncExternalStore(subscribeLocation, locationSuffix, () => '');
  const [open, setOpen] = useState(false);
+ const [closing, setClosing] = useState(false);
+ const [keyboard, setKeyboard] = useState(false);
+ const instant = Boolean(reduced || keyboard);
+ function closeMenu(immediate = false) {
+  if (immediate || instant) {setClosing(false); setOpen(false);}
+  else setClosing(true);
+ }
  const dialog = useRef<HTMLDialogElement>(null);
  const trigger = useRef<HTMLButtonElement>(null);
  useEffect(() => {
@@ -29,7 +37,7 @@ export function Header() {
   element?.showModal();
   document.body.style.overflow = 'hidden';
   const media = window.matchMedia('(min-width: 900px)');
-  const closeDesktop = () => {if (media.matches) setOpen(false);};
+  const closeDesktop = () => {if (media.matches) {setClosing(false); setOpen(false);}};
   media.addEventListener('change', closeDesktop);
   return () => {element?.close(); document.body.style.overflow = previousOverflow; media.removeEventListener('change', closeDesktop); triggerElement?.focus();};
  }, [open]);
@@ -40,11 +48,11 @@ export function Header() {
  setOpen(false);
  router.push(`${pathname}${window.location.search}${window.location.hash}`, {locale: target});
 }}><Languages size={16} strokeWidth={1.3} aria-hidden="true" /><span className="language-label">{target === 'ar' ? 'العربية' : 'English'}</span></Link>;
- return <MotionConfig reducedMotion="user"><header className="site-header container"><Link href="/" className="wordmark" aria-label="ORYNOVA" dir="ltr">ORYNOVA<span aria-hidden="true" className="logo-dot">.</span></Link><nav className="desktop-nav" aria-label={t('label')}>{routes.map(route => <Link key={route.key} href={route.href} aria-current={pathname === route.href ? 'page' : undefined}>{t(route.key)}</Link>)}</nav><div className="header-actions">{language}<button ref={trigger} className="menu-trigger" aria-label={t('open')} aria-expanded={open} aria-controls="mobile-navigation" onClick={() => setOpen(true)}><Menu size={23} strokeWidth={1.4} /></button></div></header><AnimatePresence>{open && <dialog ref={dialog} id="mobile-navigation" className="mobile-dialog" aria-label={t('label')} onKeyDown={event => {
+ return <MotionConfig reducedMotion="user"><header className="site-header container"><Link href="/" className="wordmark" aria-label="ORYNOVA" dir="ltr">ORYNOVA<span aria-hidden="true" className="logo-dot">.</span></Link><nav className="desktop-nav" aria-label={t('label')}>{routes.map(route => <Link key={route.key} href={route.href} aria-current={pathname === route.href ? 'page' : undefined}>{t(route.key)}</Link>)}</nav><div className="header-actions">{language}<button ref={trigger} className="menu-trigger" aria-label={t('open')} aria-expanded={open} aria-controls="mobile-navigation" onClick={event => {setKeyboard(event.detail === 0); setClosing(false); setOpen(true);}}><Menu size={23} strokeWidth={1.4} /></button></div></header>{open && <dialog ref={dialog} id="mobile-navigation" className="mobile-dialog" aria-label={t('label')} onKeyDown={event => {
  if (event.key !== 'Tab') return;
  const controls = Array.from(event.currentTarget.querySelectorAll<HTMLElement>('a[href], button:not([disabled])'));
  const first = controls[0]; const last = controls[controls.length - 1];
  if (event.shiftKey && document.activeElement === first) {event.preventDefault(); last?.focus();}
  else if (!event.shiftKey && document.activeElement === last) {event.preventDefault(); first?.focus();}
-}} onCancel={event => {event.preventDefault(); setOpen(false);}} onClick={event => {if (event.target === event.currentTarget) setOpen(false);}}><motion.div className="mobile-panel" initial={reduced ? false : {opacity: 0, y: -10}} animate={{opacity: 1, y: 0}} exit={reduced ? undefined : {opacity: 0, y: -8}} transition={{duration: reduced ? 0 : 0.2}}><div className="mobile-heading"><span className="wordmark" dir="ltr">ORYNOVA</span><button autoFocus aria-label={t('close')} onClick={() => setOpen(false)}><X size={25} strokeWidth={1.4} /></button></div><nav aria-label={t('label')}>{routes.map(route => <Link key={route.key} href={route.href} aria-current={pathname === route.href ? 'page' : undefined} onClick={() => setOpen(false)}>{t(route.key)}<ArrowUpRight className="directional" size={22} /></Link>)}</nav><div className="mobile-language">{language}</div></motion.div></dialog>}</AnimatePresence></MotionConfig>;
+}} onCancel={event => {event.preventDefault(); closeMenu(true);}} onClick={event => {if (event.target === event.currentTarget) closeMenu();}}><motion.div className="mobile-panel" initial={instant ? false : {opacity: 0, transform: 'translateY(-10px)'}} animate={closing ? {opacity: 0, transform: instant ? 'none' : 'translateY(-8px)'} : {opacity: 1, transform: 'translateY(0px)'}} transition={{duration: instant ? 0 : closing ? motionSpec.exit : motionSpec.enter, ease: motionSpec.easeDrawer}} onAnimationComplete={() => {if (closing) {setClosing(false); setOpen(false);}}}><div className="mobile-heading"><span className="wordmark" dir="ltr">ORYNOVA</span><button autoFocus aria-label={t('close')} onClick={event => closeMenu(event.detail === 0)}><X size={25} strokeWidth={1.4} /></button></div><motion.nav initial={false} animate={closing ? "closed" : "open"} variants={{open:{transition:{staggerChildren:instant?0:.05}}}} aria-label={t('label')}>{routes.map(route => <Link key={route.key} href={route.href} aria-current={pathname === route.href ? 'page' : undefined} onClick={() => setOpen(false)}><motion.span initial={instant?false:{opacity:0,transform:'translateY(8px)'}} variants={{open:{opacity:1,transform:'translateY(0px)'},closed:{opacity:0}}} transition={{duration:instant?0:motionSpec.enter,ease:motionSpec.easeOut}}>{t(route.key)}</motion.span><ArrowUpRight className="directional" size={22} /></Link>)}</motion.nav><div className="mobile-language">{language}</div></motion.div></dialog>}</MotionConfig>;
 }

@@ -273,7 +273,9 @@ h1 em {
   color: var(--muted)
 }
 .theme-nox {
-  --atmosphere: var(--nox)
+  --atmosphere: var(--nox);
+  /* A lighter navy light source keeps the bottle halo visible on black. */
+  --bottle-atmosphere: #3b6092
 }
 .theme-fuego {
   --atmosphere: var(--fuego)
@@ -616,9 +618,6 @@ h2 em {
   height: 100%;
   object-fit: contain;
   transition: transform .8s cubic-bezier(.22,1,.36,1)
-}
-.fragrance-showcase:hover .fragrance-image img {
-  transform: scale(1.025)
 }
 .fragrance-caption {
   padding-top: 22px
@@ -1255,7 +1254,7 @@ html[lang='ar'] .premium-cta {font-size: 14px;letter-spacing: 0}
   position:absolute;
   inset:14% 5% 0;
   z-index:-1;
-  background:radial-gradient(ellipse at 50% 65%,color-mix(in srgb,var(--atmosphere) 70%,transparent),transparent 66%);
+  background:radial-gradient(ellipse at 50% 65%,color-mix(in srgb,var(--bottle-atmosphere,var(--atmosphere)) 70%,transparent),transparent 66%);
   opacity:0;
   transform:scale(.9);
   transition:opacity .5s ease,transform .6s ease;
@@ -1480,7 +1479,8 @@ html[lang='ar'] .cinema-product-caption {font-size:12px}
 .fragrance-discovery {min-width:0}
 .discovery-fragrance-tabs {display:flex;align-items:center;gap:30px;overflow-x:auto;scrollbar-width:thin;scrollbar-color:#d8b47755 transparent;border-bottom:1px solid var(--border);padding:6px 2px 12px;max-width:100%;overscroll-behavior-inline:contain}
 .discovery-fragrance-tabs button {position:relative;flex:0 0 auto;min-height:50px;padding:8px 12px;color:var(--muted);font-family:var(--font-playfair),serif;font-size:22px;line-height:1.2;letter-spacing:.12em;transition:color .2s}
-.discovery-fragrance-tabs button[aria-selected='true'],.discovery-fragrance-tabs button:hover {color:var(--gold)}
+.discovery-fragrance-tabs button[aria-selected='true'] {color:var(--gold)}
+@media(hover:hover) and (pointer:fine) {.discovery-fragrance-tabs button:hover {color:var(--gold)}}
 .discovery-fragrance-line {position:absolute;inset-inline:12px;bottom:0;height:1px;background:var(--gold)}
 .discovery-scene {position:relative;isolation:isolate;display:grid;gap:12px;min-width:0;padding-block:16px 10px}
 .discovery-environment {position:absolute;z-index:-2;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 75%;opacity:.22;mask-image:radial-gradient(ellipse at center,#000 35%,transparent 74%);pointer-events:none}
@@ -1548,4 +1548,104 @@ html[lang='ar'] .discovery-note-description {font-size:30px}
 .discovery-atmosphere {mask-image:radial-gradient(ellipse at center,#000 42%,transparent 76%)}
 @media(max-width:899px) {
  html[dir='rtl'] .discovery-atmosphere {background:radial-gradient(ellipse at 70% 40%,color-mix(in srgb,var(--atmosphere) 44%,transparent),transparent 67%)}
+}
+
+/* Editorial revamp: shared UI timing, separate from the opening campaign. */
+:root {
+ --ease-ui-out:cubic-bezier(.23,1,.32,1);
+ --ease-ui-move:cubic-bezier(.77,0,.175,1);
+ --duration-feedback:160ms;
+ --duration-indicator:200ms;
+ --duration-enter:250ms;
+}
+.premium-cta::after {transition:transform var(--duration-indicator) var(--ease-ui-out),opacity var(--duration-indicator) ease}
+.premium-cta>span {transition:transform var(--duration-feedback) var(--ease-ui-out);transform-origin:left}
+.premium-cta .cta-arrow {transition:translate var(--duration-indicator) var(--ease-ui-out),transform var(--duration-feedback) var(--ease-ui-out)}
+.premium-cta:active>span,.premium-cta:active .cta-arrow {transform:scale(.97)}
+/* Focus feedback does not depend on the presence of a mouse. */
+.premium-cta:focus-visible::after {transform:scaleX(1);opacity:1}
+.premium-cta:focus-visible .cta-arrow {translate:3px -3px}
+[dir='rtl'] .premium-cta:focus-visible .cta-arrow {translate:-3px -3px}
+@media(hover:none),(pointer:coarse) {
+ .premium-cta:hover:not(:focus-visible)::after {transform:scaleX(.36);opacity:.65}
+ .premium-cta:hover:not(:focus-visible) .cta-arrow,[dir='rtl'] .premium-cta:hover:not(:focus-visible) .cta-arrow {translate:none}
+}
+.bottle-stage::before {transition:opacity var(--duration-indicator) ease,transform var(--duration-enter) var(--ease-ui-out)}
+.bottle-stage img {transition:transform var(--duration-enter) var(--ease-ui-out)}
+.fragrance-showcase .fragrance-image::after {transition:transform var(--duration-indicator) var(--ease-ui-out)}
+/* The section owns its scrolling rail; the document keeps normal vertical scrolling. */
+.editorial-gallery {grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:84vw;gap:20px;overflow-x:auto;scroll-snap-type:inline proximity;scroll-padding-inline:0;margin-inline-end:calc(-1 * var(--page-gutter));padding:12px var(--page-gutter) 28px 0;scrollbar-width:thin;scrollbar-color:var(--border) transparent;overscroll-behavior-inline:contain}
+[dir='rtl'] .editorial-gallery {padding-inline:0 var(--page-gutter)}
+.editorial-gallery>.gallery-item {min-width:0;scroll-snap-align:start}
+.editorial-gallery .fragrance-image {aspect-ratio:auto;height:clamp(340px,106vw,510px);padding-block:28px 18px}
+.editorial-gallery .fragrance-image img {object-fit:contain}
+.editorial-gallery .fragrance-image img.is-isolated {padding:12px 17%;mix-blend-mode:normal}
+.editorial-gallery .fragrance-caption {padding-top:24px}
+.editorial-gallery .fragrance-caption h3 {font-size:clamp(34px,5vw,48px)}
+.editorial-gallery .fragrance-caption p {font-size:13px;line-height:1.65;min-height:2em}
+.story-image {overflow:hidden}
+.story-image>img {display:block;width:100%;height:auto}
+.story-copy>div {min-width:0}
+.brand-signature-art {position:relative}
+.brand-signature-art::after {content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(0deg,var(--background),transparent 18%,transparent 88%,var(--background))}
+.discovery-atmospheres {position:absolute;inset:0;z-index:-1;pointer-events:none}
+.discovery-atmosphere {transition:opacity var(--duration-enter) ease}
+.discovery-product-copy {min-height:135px}
+.selection-image-stack {position:relative}
+.selection-image-stack>div {position:absolute;inset:0}
+.notes-image-stack {aspect-ratio:3/2}
+.notes-tabs button {min-height:52px}
+@media(min-width:768px) {
+ .editorial-gallery {grid-auto-flow:row;grid-auto-columns:auto;grid-template-columns:repeat(2,minmax(0,1fr));gap:36px 30px;overflow:visible;margin-inline-end:0;padding:12px 0 28px}
+ .editorial-gallery .fragrance-image {height:clamp(350px,42vw,520px)}
+}
+@media(min-width:1024px) {
+ .editorial-gallery {grid-template-columns:repeat(3,minmax(0,1fr));gap:50px 38px}
+ .editorial-gallery .fragrance-image {height:clamp(370px,33vw,510px)}
+ .editorial-gallery>.gallery-item:only-child {grid-column:span 2;max-width:620px}
+}
+@media(min-width:900px) {.discovery-product-copy {min-height:115px}}
+@media(prefers-reduced-motion:reduce) {
+ .premium-cta:active>span,.premium-cta:active .cta-arrow {transform:none}
+ .discovery-atmosphere {transition:none}
+}
+
+[dir='rtl'] .premium-cta>span {transform-origin:right}
+.gallery-controls {display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:8px;border-top:1px solid var(--border)}
+.gallery-controls p {font-size:10px;letter-spacing:.09em;color:var(--muted);margin:0;line-height:1.5}
+.gallery-controls>div {display:flex;gap:8px}
+.gallery-controls button {display:grid;place-items:center;min-width:48px;min-height:48px;color:var(--gold)}
+.gallery-controls svg {transition:transform var(--duration-feedback) var(--ease-ui-out)}
+.gallery-controls button:active svg {transform:scale(.97)}
+html[lang='ar'] .gallery-controls p {font-size:13px;letter-spacing:0}
+@media(min-width:768px) {.gallery-controls {display:none}}
+@media(prefers-reduced-motion:reduce) {.gallery-controls button:active svg {transform:none}}
+
+.editorial-gallery {position:relative}
+@media(min-width:768px) {
+ .editorial-gallery:has(>.gallery-item:only-child) {grid-template-columns:minmax(0,620px)}
+ .editorial-gallery>.gallery-item:only-child {grid-column:auto}
+}
+@media(min-width:1024px) {
+ .editorial-gallery:has(>.gallery-item:nth-child(2):last-child) {grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+.brand-signature-art img.signature-isolated {object-fit:contain;padding:28px 18%;height:clamp(400px,70vw,620px)}
+html[dir='rtl'] .signature-name {text-align:right}
+
+/* Keyboard feedback commits immediately rather than replaying pointer motion. */
+.fragrance-showcase:has(:focus-visible) .bottle-stage img,
+.fragrance-showcase:has(:focus-visible) .bottle-stage::before,
+.fragrance-showcase:has(:focus-visible) .fragrance-image::after,
+.collection-entry:has(:focus-visible) .bottle-stage img,
+.collection-entry:has(:focus-visible) .bottle-stage::before,
+.premium-cta:focus-visible::after,.premium-cta:focus-visible .cta-arrow {transition:none}
+.premium-cta:focus-visible:active>span,.premium-cta:focus-visible:active .cta-arrow {transform:none}
+
+/* Collection exploration uses a horizontal, direction-aware arrow. */
+.premium-cta.cta-horizontal:is(:hover,:focus-visible) .cta-arrow,
+[dir='rtl'] .premium-cta.cta-horizontal:is(:hover,:focus-visible) .cta-arrow {translate:none}
+@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
+ .premium-cta.cta-horizontal:hover:not(:focus-visible) .cta-arrow {translate:3px 0}
+ [dir='rtl'] .premium-cta.cta-horizontal:hover:not(:focus-visible) .cta-arrow {translate:-3px 0}
 }

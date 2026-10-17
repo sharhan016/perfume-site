@@ -60,7 +60,10 @@
       "subtitle": "Find the fragrance that feels like you.",
       "all": "View all fragrances",
       "explore": "Explore {name}",
-      "empty": "A new collection is on the horizon."
+      "empty": "A new collection is on the horizon.",
+      "previous": "Previous fragrance",
+      "next": "Next fragrance",
+      "browse": "Discover your signature"
     },
     "story": {
       "eyebrow": "The spirit of ORYNOVA",

@@ -7,7 +7,8 @@ import ts from 'typescript';
 // substitute for device/OS media-preference testing in a real browser.
 if (!process.env.ORYNOVA_MOTION_CASE) {
  await mkdir('.motion-test', {recursive: true});
- const source = await readFile('src/components/animations/fade-reveal.tsx', 'utf8');
+ const source = (await readFile('src/components/animations/fade-reveal.tsx', 'utf8')).replace("'./motion-spec'","'./motion-spec.mjs'");
+ await writeFile('.motion-test/motion-spec.mjs', ts.transpileModule(await readFile('src/components/animations/motion-spec.ts','utf8'), {compilerOptions:{module:ts.ModuleKind.ESNext}}).outputText);
  const output = ts.transpileModule(source, {compilerOptions: {jsx: ts.JsxEmit.ReactJSX, module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022}}).outputText;
  await writeFile('.motion-test/components.mjs', output);
  const cinemaSource = await readFile('src/components/animations/cinematic-hero.tsx', 'utf8');
